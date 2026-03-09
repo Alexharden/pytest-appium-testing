@@ -2,6 +2,7 @@
 name = "pytest-appium-testing"
 version = "0.1.0"
 description = ""
+package-mode = false
 authors = [
     {name = "harden hsieh",email = "harden.cc.hsieh@viewsonic.com"}
 ]
