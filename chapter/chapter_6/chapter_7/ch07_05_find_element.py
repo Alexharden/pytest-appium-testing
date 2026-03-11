@@ -12,7 +12,7 @@ from time import sleep
 #     "noReset": True
 # }
 
-# drvier = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+# driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 # #輸出當前包和activity
 # my_id = 'com.dangdan.buy2:id/tab_personal_iv'
 # driver.find_element(by='id', value=my_id).click()
