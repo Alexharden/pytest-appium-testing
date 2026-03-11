@@ -3,7 +3,7 @@ from appium.webdriver.common.appiumby import AppiumBy
 from appium.options.android import UiAutomator2Options
 from time import sleep
 
-# #課本練習
+#課本練習
 # desired_caps = {
 #     "deviceName": '127.0.0.1:21503',
 #     "appPackage": "com.dangdan.buy2",
@@ -15,9 +15,10 @@ from time import sleep
 # drvier = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 # #輸出當前包和activity
 # my_id = 'com.dangdan.buy2:id/tab_personal_iv'
-# driver.find_element(AppiumBy.ID, my_id).click()
+# driver.find_element_by_id(my_id).click()
 # sleep(3)
 # driver.quit()
+
 
 
 # 1. 基礎連線設定
@@ -30,59 +31,56 @@ desired_caps = {
 }
 
 options = UiAutomator2Options().load_capabilities(desired_caps)
-
-# 2. 建立連線
 driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
 
-# --- 核心練習：獲取當前 App 資訊 ---
+# --- 核心練習：各種定位點擊方式 ---
+
+# 1. Accessibility ID (課本對應：find_element_by_accessibility_id)
+# 現代寫法如下，邏輯與課本完全一致
 driver.find_element("accessibility id", "Chrome").click()
-print("id點到了")
+print("✅ Accessibility ID 點擊成功")
 sleep(3)
 driver.terminate_app("com.android.chrome")
 sleep(1)
 
+# 2. XPath (課本對應：find_element_by_xpath)
 # 使用 Inspector 提供的建議路徑
 driver.find_element("xpath", '//android.widget.TextView[@content-desc="Chrome"]').click()
-print("xpath Inspector 點到了")
+print("✅ XPath (Inspector) 點擊成功")
 sleep(3)
 driver.terminate_app("com.android.chrome")
 sleep(1)
 
-# 或者是根據文字來定位
+# 3. XPath Text (課本對應：find_element_by_xpath)
+# 根據文字來定位
 driver.find_element("xpath", '//*[@text="Chrome"]').click()
-print("xpath text 點到了")
+print("✅ XPath (Text) 點擊成功")
 sleep(3)
 driver.terminate_app("com.android.chrome")
 sleep(1)
 
-# 假設有 resource id 是 com.android.launcher3:id/icon
-# driver.find_element("id", "com.google.android.apps.nexuslauncher:id/icon").click()
-# print("resource id 點到了")
-# sleep(3)
-# driver.terminate_app("com.android.chrome")
-# sleep(1)
-
-#Android UIAutomator
+# 4. Android UIAutomator (課本對應：find_element_by_android_uiautomator)
 driver.find_element("-android uiautomator", 'new UiSelector().text("Chrome")').click()
-print("uiautomator 點到了")
+print("✅ UIAutomator 點擊成功")
 sleep(3)
 driver.terminate_app("com.android.chrome")
 sleep(1)
 
-# Class name 點擊畫面中第 3 個 TextView (索引從 0 開始，假設 Chrome 是第 3 個)
+# 5. Class Name (課本對應：find_elements_by_class_name)
+# 注意：這是 find_elements (複數)，會回傳清單
 driver.find_elements("class name", "android.widget.TextView")[7].click()
-print("class name 點到了")
+print("✅ Class Name (Index 7) 點擊成功")
 sleep(3)
 driver.terminate_app("com.android.chrome")
 sleep(1)
 
-#座標
+# 6. 座標點擊 (唯一解)
+# 座標沒有 find_element 寫法，這是獨立的 API
 driver.tap([(666, 1970)])
-print("座標點到了")
+print("✅ 座標點擊成功")
 sleep(3)
 driver.terminate_app("com.android.chrome")
 sleep(1)
-
 
 # --- 結束連線 ---
 print("🧹 測試結束，關閉 Session")
