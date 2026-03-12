@@ -1,9 +1,11 @@
-from appium import webdriver
 from time import sleep
 
+from appium import webdriver
+from appium.options.android import UiAutomator2Options
+
 # 課本練習
-# desired_caps = {"deviceName": "127.0.0.1:21503", 
-# "appPackage": "com.miui.calculator", 
+# desired_caps = {"deviceName": "127.0.0.1:21503",
+# "appPackage": "com.miui.calculator",
 # "appActivity": "com.miui.calculator.cal.CalculatorActivity",
 # "platformName": "Android",
 # }
@@ -20,10 +22,6 @@ from time import sleep
 # driver.quit()
 
 
-from appium import webdriver
-from appium.options.android import UiAutomator2Options
-from time import sleep
-
 # 1. 基礎連線設定
 # 我們指定連線到你的 ViewSonic Test APK
 desired_caps = {
@@ -32,8 +30,8 @@ desired_caps = {
     "appium:deviceName": "emulator-5554",
     "appium:platformVersion": "14.0",
     "appium:appPackage": "com.viewsonic.testapk",
-    "appium:appActivity": ".MainActivity", # 請確認你的正確 Activity 名稱
-    "noReset": True
+    "appium:appActivity": ".MainActivity",  # 請確認你的正確 Activity 名稱
+    "noReset": True,
 }
 
 options = UiAutomator2Options().load_capabilities(desired_caps)

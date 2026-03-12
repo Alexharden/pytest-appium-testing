@@ -1,8 +1,8 @@
 from appium import webdriver
-from appium.webdriver.common.appiumby import AppiumBy
 from appium.options.android import UiAutomator2Options
+from appium.webdriver.common.appiumby import AppiumBy
 
-#課本練習
+# 課本練習
 # '''
 # 獲取包和activity
 # '''
@@ -31,7 +31,7 @@ desired_caps = {
     "appium:platformVersion": "14.0",
     "appium:appPackage": "com.viewsonic.testapk",
     "appium:appActivity": ".MainActivity",
-    "noReset": True
+    "noReset": True,
 }
 
 options = UiAutomator2Options().load_capabilities(desired_caps)
@@ -46,7 +46,7 @@ driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
 current_pkg = driver.current_package
 print("當前包名 (Package): {}".format(current_pkg))
 
-# 獲取當前活動名稱 (Activity) 這是 App 裡面的單一畫面。 
+# 獲取當前活動名稱 (Activity) 這是 App 裡面的單一畫面。
 # 注意：這也是屬性，不需要加括號 ()
 current_act = driver.current_activity
 print("當前活動 (Activity): {}".format(current_act))

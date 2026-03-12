@@ -1,10 +1,11 @@
-from appium import webdriver
 from time import sleep
+
+from appium import webdriver
 from appium.options.android import UiAutomator2Options
 
 # #課本練習
 # desired_caps = {
-#     "deviceName": "127.0.0.1:21503", 
+#     "deviceName": "127.0.0.1:21503",
 #     "platformName": "Android",
 # }
 
@@ -21,7 +22,7 @@ desired_caps = {
     "appium:platformVersion": "14.0",
     "appium:appPackage": "com.viewsonic.testapk",
     "appium:appActivity": ".MainActivity",
-    "noReset": False
+    "noReset": False,
 }
 
 # 2. 轉換為 Options 物件 (解決 TypeError)

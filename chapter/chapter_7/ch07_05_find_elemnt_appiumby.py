@@ -1,8 +1,9 @@
-from appium import webdriver
-from appium.webdriver.common.appiumby import By
-from appium.webdriver.common.appiumby import AppiumBy   # 導入 Appium 專用 By
-from appium.options.android import UiAutomator2Options
 from time import sleep
+
+from appium import webdriver
+from appium.options.android import UiAutomator2Options
+from appium.webdriver.common.appiumby import AppiumBy  # 導入 Appium 專用 By
+from appium.webdriver.common.appiumby import By
 
 # #課本練習
 # desired_caps = {
@@ -27,7 +28,7 @@ desired_caps = {
     "appium:automationName": "UiAutomator2",
     "appium:deviceName": "emulator-5554",
     "appium:platformVersion": "14.0",
-    "noReset": True
+    "noReset": True,
 }
 
 options = UiAutomator2Options().load_capabilities(desired_caps)

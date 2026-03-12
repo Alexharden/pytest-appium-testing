@@ -1,17 +1,18 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
-from time import sleep
 
 # 課本練習
 # desired_caps = {
-#     "deviceName": "127.0.0.1:21503", 
+#     "deviceName": "127.0.0.1:21503",
 #     "platformName": "Android",
 #     "appActivity": "com.miui.calculator.cal.CalculatorActivity",
 #     "appPackage": "com.miui.calculator"
 # }
 # driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 # en_res = driver.app_strings("en", "/path/to/file")
-# print("en strings is {}", format(en_res)) 
+# print("en strings is {}", format(en_res))
 # zh_res = driver.app_strings("zh")
 # print("zh strings is {}", format(zh_res))
 # driver.quit()
@@ -24,8 +25,8 @@ desired_caps = {
     "appium:deviceName": "emulator-5554",
     "appium:platformVersion": "14.0",
     "appium:appPackage": "com.viewsonic.testapk",
-    "appium:appActivity": ".MainActivity", 
-    "noReset": True
+    "appium:appActivity": ".MainActivity",
+    "noReset": True,
 }
 
 options = UiAutomator2Options().load_capabilities(desired_caps)

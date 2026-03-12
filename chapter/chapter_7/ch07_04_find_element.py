@@ -1,9 +1,10 @@
-from appium import webdriver
-from appium.webdriver.common.appiumby import AppiumBy
-from appium.options.android import UiAutomator2Options
 from time import sleep
 
-#課本練習
+from appium import webdriver
+from appium.options.android import UiAutomator2Options
+from appium.webdriver.common.appiumby import AppiumBy
+
+# 課本練習
 # desired_caps = {
 #     "deviceName": '127.0.0.1:21503',
 #     "appPackage": "com.dangdan.buy2",
@@ -20,14 +21,13 @@ from time import sleep
 # driver.quit()
 
 
-
 # 1. 基礎連線設定
 desired_caps = {
     "platformName": "Android",
     "appium:automationName": "UiAutomator2",
     "appium:deviceName": "emulator-5554",
     "appium:platformVersion": "14.0",
-    "noReset": True
+    "noReset": True,
 }
 
 options = UiAutomator2Options().load_capabilities(desired_caps)

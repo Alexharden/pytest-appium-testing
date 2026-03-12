@@ -1,7 +1,8 @@
-from appium import webdriver
-from appium.webdriver.common.appiumby import AppiumBy
-from appium.options.android import UiAutomator2Options
 from time import sleep
+
+from appium import webdriver
+from appium.options.android import UiAutomator2Options
+from appium.webdriver.common.appiumby import AppiumBy
 
 # #課本練習
 # desired_caps = {
@@ -26,7 +27,7 @@ desired_caps = {
     "appium:automationName": "UiAutomator2",
     "appium:deviceName": "emulator-5554",
     "appium:platformVersion": "14.0",
-    "noReset": True
+    "noReset": True,
 }
 
 options = UiAutomator2Options().load_capabilities(desired_caps)
@@ -35,34 +36,34 @@ driver = webdriver.Remote("http://127.0.0.1:4723", options=options)
 # --- 核心練習：依照 (by=..., value=...) 格式執行點擊 ---
 
 # 1. Accessibility ID 方式
-driver.find_element(by='accessibility id', value='Chrome').click()
+driver.find_element(by="accessibility id", value="Chrome").click()
 print("✅ accessibility id 點到了")
 sleep(2)
 driver.terminate_app("com.android.chrome")
 
 # 2. XPath 方式 (使用屬性組合)
 xpath_value = '//android.widget.TextView[@content-desc="Chrome"]'
-driver.find_element(by='xpath', value=xpath_value).click()
+driver.find_element(by="xpath", value=xpath_value).click()
 print("✅ xpath 點到了")
 sleep(2)
 driver.terminate_app("com.android.chrome")
 
 # 3. XPath 方式 (純文字比對)
-driver.find_element(by='xpath', value='//*[@text="Chrome"]').click()
+driver.find_element(by="xpath", value='//*[@text="Chrome"]').click()
 print("✅ xpath text 點到了")
 sleep(2)
 driver.terminate_app("com.android.chrome")
 
 # 4. Android UIAutomator 方式
 uia_value = 'new UiSelector().text("Chrome")'
-driver.find_element(by='-android uiautomator', value=uia_value).click()
+driver.find_element(by="-android uiautomator", value=uia_value).click()
 print("✅ uiautomator 點到了")
 sleep(2)
 driver.terminate_app("com.android.chrome")
 
 # 5. Class Name 方式 (取得列表後索引)
 # 注意：find_elements 複數形式同樣適用 by/value
-elements = driver.find_elements(by='class name', value='android.widget.TextView')
+elements = driver.find_elements(by="class name", value="android.widget.TextView")
 elements[7].click()
 print("✅ class name 點到了")
 sleep(2)

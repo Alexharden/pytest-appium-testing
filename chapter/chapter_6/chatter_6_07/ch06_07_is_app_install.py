@@ -1,7 +1,8 @@
-from appium import webdriver
-from appium.options.android import UiAutomator2Options
 from time import sleep
 
+# 練習二
+from appium import webdriver
+from appium.options.android import UiAutomator2Options
 
 # 課本的寫法
 # desired_caps = {
@@ -49,17 +50,13 @@ from time import sleep
 # driver.quit()
 
 
-#練習二
-from appium import webdriver
-from appium.options.android import UiAutomator2Options
-
 # 1. 基礎連線設定
 desired_caps = {
     "platformName": "Android",
     "appium:automationName": "UiAutomator2",
     "appium:deviceName": "emulator-5554",
     "appium:platformVersion": "14.0",
-    "noReset": True
+    "noReset": True,
 }
 
 # 2. 轉換為 Options 物件
