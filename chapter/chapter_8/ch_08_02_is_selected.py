@@ -1,9 +1,10 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
 
 # --- 1. 設定 Capabilities ---
 desired_caps = {
@@ -22,7 +23,7 @@ try:
     # 第一部分：使用 ID / Class 定位檢查狀態
     # ==========================================
     print("--- 開始第一段：ID/Class 操作 ---")
-    
+
     # 進入 Battery 頁面
     battery_menu = wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, "//*[@text='Battery']")))
     battery_menu.click()
@@ -34,11 +35,11 @@ try:
     # 獲取初始狀態
     initial_status = switch_ele.get_attribute("checked") == "true"
     print(f"ID 檢查：初始狀態為【{'開啟' if initial_status else '關閉'}】")
-    
+
     # 執行切換
     switch_ele.click()
-    sleep(1) # 🌟 重要：等待動畫完成
-    
+    sleep(1)  # 🌟 重要：等待動畫完成
+
     new_status = switch_ele.get_attribute("checked") == "true"
     print(f"ID 檢查：切換後狀態為【{'開啟' if new_status else '關閉'}】")
 
@@ -61,10 +62,10 @@ try:
     # 第二部分：全部使用 XPath 定位檢查狀態
     # ==========================================
     print("\n--- 開始第二段：XPath 操作 ---")
-    
+
     # 重新啟動 Settings
     driver.activate_app("com.android.settings")
-    
+
     # XPath 進入 Battery
     wait.until(EC.element_to_be_clickable((AppiumBy.XPATH, "//*[@text='Battery']"))).click()
 
@@ -78,9 +79,9 @@ try:
 
     # 執行切換
     switch_xp_ele.click()
-    
+
     # 🌟 關鍵修正：給系統時間更新屬性，否則會抓到舊的狀態
-    sleep(1) 
+    sleep(1)
 
     xp_final_status = switch_xp_ele.get_attribute("checked")
     print(f"✅ XPath 驗證：切換動作已完成，目前屬性值為: {xp_final_status}")

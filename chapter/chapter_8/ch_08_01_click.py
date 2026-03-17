@@ -1,7 +1,8 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from time import sleep
 
 # #課本練習
 # desired_caps = {

@@ -1,9 +1,10 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
 
 desired_caps = {
     "platformName": "Android",
@@ -21,7 +22,7 @@ try:
     if phone_icon.is_displayed():
         print("✅ ID: 確認 Phone 圖示已顯示")
         phone_icon.click()
-    
+
     # 1. 檢查外層假框
     fake_search_id = "com.google.android.dialer:id/open_search_bar_text_view"
     fake_bar = wait.until(EC.presence_of_element_located((AppiumBy.ID, fake_search_id)))
@@ -36,20 +37,20 @@ try:
     if real_bar.is_displayed():
         print("✅ ID: 確認真正輸入框已顯示")
         real_bar.send_keys("123456")
-        
+
     # 🌟 修改點：組合返回動作 (確保退乾淨再跑下一段)
     if driver.is_keyboard_shown():
         driver.hide_keyboard()
-    
+
     print("ID 流程：執行返回與 Home...")
-    driver.back()          # 返回撥號首頁
+    driver.back()  # 返回撥號首頁
     sleep(1)
-    driver.press_keycode(3) # 回到桌面
+    driver.press_keycode(3)  # 回到桌面
     sleep(2)
 
     # --- 第二段：全部使用 XPath 定位與檢查 ---
     print("\n--- 開始第二段：XPath 操作 ---")
-    
+
     # 1. 點擊電話 (XPath)
     phone_xpath = '//android.widget.TextView[@content-desc="Phone"]'
     phone_icon_xp = wait.until(EC.presence_of_element_located((AppiumBy.XPATH, phone_xpath)))
@@ -74,11 +75,11 @@ try:
 
     # 🌟 修改點：使用連按兩次返回的策略
     print("XPath 流程：執行連按兩次返回與 Home...")
-    driver.press_keycode(4) # 第一次 Back (收鍵盤)
+    driver.press_keycode(4)  # 第一次 Back (收鍵盤)
     sleep(0.5)
-    driver.press_keycode(4) # 第二次 Back (回 App 首頁)
+    driver.press_keycode(4)  # 第二次 Back (回 App 首頁)
     sleep(0.5)
-    driver.press_keycode(3) # Home (回桌面)
+    driver.press_keycode(3)  # Home (回桌面)
 
 except Exception as e:
     print(f"❌ 發生錯誤: {e}")

@@ -1,9 +1,10 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
 
 desired_caps = {
     "platformName": "Android",

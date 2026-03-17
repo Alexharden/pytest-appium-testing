@@ -1,9 +1,10 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
 
 desired_caps = {
     "platformName": "Android",
@@ -24,16 +25,16 @@ try:
     print("已點擊 Phone，等待搜尋框出現...")
 
     # --- 核心測試區塊 ---
-    
+
     # 2. 使用更新後的正確 ID 定位搜尋框 (根據你的截圖)
     search_id = "com.google.android.dialer:id/open_search_bar_text_view"
-    
+
     # 使用智能等待直到元素出現在畫面上，並存入變數
     ele_by_id = wait.until(EC.presence_of_element_located((AppiumBy.ID, search_id)))
 
     # 3. 使用更新後的正確 XPath 定位搜尋框 (注意已經改成 TextView)
     search_xpath = '//android.widget.TextView[@resource-id="com.google.android.dialer:id/open_search_bar_text_view"]'
-    
+
     # 因為上面已經確認元素存在了，這裡直接用 find_element 抓取並存入另一個變數
     ele_by_xpath = driver.find_element(AppiumBy.XPATH, search_xpath)
 

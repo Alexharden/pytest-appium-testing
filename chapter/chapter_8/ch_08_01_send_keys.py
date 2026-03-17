@@ -1,9 +1,10 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
 
 desired_caps = {
     "platformName": "Android",
@@ -36,14 +37,13 @@ try:
 
     # 🌟 修改點：組合返回動作 (退乾淨再跑下一段)
     print("ID 流程：執行返回、返回、Home...")
-    driver.press_keycode(4) # 1. 收鍵盤
+    driver.press_keycode(4)  # 1. 收鍵盤
     sleep(1)
-    driver.press_keycode(4) # 2. 回首頁
+    driver.press_keycode(4)  # 2. 回首頁
     sleep(1)
-    driver.press_keycode(3) # 3. 回桌面
+    driver.press_keycode(3)  # 3. 回桌面
     print("ID 流程完成")
-    sleep(2) 
-
+    sleep(2)
 
     # --- 第二段：全部使用 XPath 定位 ---
     print("\n--- 開始第二段：XPath 操作 (send_keys) ---")
@@ -64,11 +64,11 @@ try:
 
     # 🌟 修改點：同樣執行連按兩次返回
     print("XPath 流程：執行返回、返回、Home...")
-    driver.press_keycode(4) # 1. 收鍵盤
+    driver.press_keycode(4)  # 1. 收鍵盤
     sleep(1)
-    driver.press_keycode(4) # 2. 回首頁
+    driver.press_keycode(4)  # 2. 回首頁
     sleep(1)
-    driver.press_keycode(3) # 3. 回桌面
+    driver.press_keycode(3)  # 3. 回桌面
 
 except Exception as e:
     print(f"\n❌ 發生錯誤: {e.__class__.__name__}\n{e}")

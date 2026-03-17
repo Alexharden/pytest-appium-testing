@@ -1,21 +1,23 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
-from time import sleep
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 # --- 連線設定 ---
 desired_caps = {
     "platformName": "Android",
     "appium:platformVersion": "14",
     "appium:deviceName": "emulator-5554",
-    "appium:automationName": "UiAutomator2"
+    "appium:automationName": "UiAutomator2",
 }
 options = UiAutomator2Options().load_capabilities(desired_caps)
 driver = webdriver.Remote("http://localhost:4723", options=options)
 wait = WebDriverWait(driver, 10)
+
 
 def reset_and_find():
     """
@@ -23,16 +25,19 @@ def reset_and_find():
     每次動作後頁面可能跳轉，舊的元素物件會失效。
     透過回首頁並重新定位，確保每次練習的 DOM 都是新的。
     """
-    driver.press_keycode(3) # 按下 Home 鍵
+    driver.press_keycode(3)  # 按下 Home 鍵
     sleep(1.5)
-    return wait.until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@content-desc="Phone"]')))
+    return wait.until(
+        EC.presence_of_element_located((AppiumBy.XPATH, '//android.widget.TextView[@content-desc="Phone"]'))
+    )
+
 
 try:
     # --- 1-4. 底層座標動作組 (針對螢幕座標) ---
     phone_ele = reset_and_find()
     rect = phone_ele.rect
-    x, y = int(rect['x'] + rect['width'] / 2), int(rect['y'] + rect['height'] / 2)
-    
+    x, y = int(rect["x"] + rect["width"] / 2), int(rect["y"] + rect["height"] / 2)
+
     actions = ActionBuilder(driver)
     # move_to_location: 移到螢幕絕對座標 (x, y)
     # pointer_down / pointer_up: 物理級的「壓下」與「抬起」

@@ -1,9 +1,10 @@
+from time import sleep
+
 from appium import webdriver
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
 
 desired_caps = {
     "platformName": "Android",
@@ -28,7 +29,7 @@ try:
     search_ele = wait.until(EC.presence_of_element_located((AppiumBy.ID, search_id)))
 
     # ==========================================
-    # 🌟 Appium 元素屬性與方法「終極大補帖」 
+    # 🌟 Appium 元素屬性與方法「終極大補帖」
     # ==========================================
     print("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓")
     print("┃        🕵️‍♂️ 元素身家調查報告 (Element Info)      ┃")
@@ -57,7 +58,9 @@ try:
     # 💡 只要是 Appium Inspector 裡 "Selected Element" 列表能看到的屬性，都能用這招抓！
     print("\n【四、進階屬性 (get_attribute)】")
     print(f"🪪 resource-id     : {search_ele.get_attribute('resource-id')}")
-    print(f"📄 content-desc    : {search_ele.get_attribute('content-desc')}  (無障礙標籤，通常用來當作 Accessibility ID)")
+    print(
+        f"📄 content-desc    : {search_ele.get_attribute('content-desc')}  (無障礙標籤，通常用來當作 Accessibility ID)"
+    )
     print(f"🖱️ clickable       : {search_ele.get_attribute('clickable')}  (這個元件本身是否允許被點擊？)")
     print(f"🔤 class           : {search_ele.get_attribute('class')}  (等同於 tag_name)")
     print(f"🔍 checked         : {search_ele.get_attribute('checked')}  (如果是 Switch 開關，這裡會顯示 true/false)")
